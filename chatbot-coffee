@@ -1,0 +1,87 @@
+# Define your functions
+
+def coffee_bot():
+  print("Welcome to the cafe!")
+  
+  size=get_size()
+  
+  drink_type=get_drink_type()
+
+  print("Alright, that's a", size, drink_type, "!")
+  cup=mug_or_plastic()
+  if cup=="Mug":
+    print('All good, we\'ll give it in a mug')
+  elif cup=="Plastic" and size=="large":
+    option_picked=no_large_plastic()
+    print('Sure thing we\'ll give you a', option_picked, "!" )
+  elif cup=="Plastic":
+    print('Sure thing, Don\'t forget to bring a reusable one next time!')
+    
+  name=get_name().capitalize()
+
+  print("Thanks," ,name, "! Your drink will be ready shortly.")
+
+def no_large_plastic():
+  res=input('Sorry we don\'t have large plastic cups at the moment. I can give it in \n [a] a ceramic mug or \n [b] change the size to a medium. \n Which one would you prefer? \n>')
+  if res=='a':
+    return "Ceramic Cup"
+  elif res=='b':
+    return "medium size drink"
+  else:
+    print('I have to do one of the options which one would you like?')
+    return no_large_plastic()
+
+def mug_or_plastic():
+  res=input('What kind of cup would you like? \n [a] Mug \n [b] Plastic \n>')
+  if res=='a':
+    return "Mug"
+  elif res=='b':
+    return "Plastic"
+  else:
+    print("Sorry couldn't catch your response")
+    return mug_or_plastic()
+
+def get_name():
+  res=input('Can I get your name? \n')
+  return res
+
+def get_size():
+  res= input('What size drink can I get for you? \n[a] Small \n[b] Medium \n[c] Large \n> ')
+  if res=='a':
+    return 'small'
+  elif res=='b':
+    return 'medium'
+  elif res=='c':
+    return 'large'
+  else:
+    print_message()
+    return get_size()
+
+def print_message():
+  print("I'm sorry, I did not understand your selection. Please enter the corresponding letter for your response.")
+
+def get_drink_type():
+  res=input('What type of drink would you like \n [a] Brewed Coffee \n [b] Mocha \n [c] Latte \n> ')
+  if res=="a":
+    return "Brewed Coffee"
+  elif res=="b":
+    return "Mocha"
+  elif res=="c":
+    return order_latte()
+  else:
+    print_message()
+    return get_drink_type()
+  
+def order_latte():
+  res=input('what kind of milk for your latte? \n [a] 2% milk \n [b] Non-fat milk \n [c] Soy milk \n> ' )
+  if res=="a":
+    return "latte"
+  elif res=="b":
+    return "Non-fat latte"
+  elif res=="c":
+    return "Soy latte"
+  else:
+    return order_latte()
+
+# Call coffee_bot()!
+coffee_bot()
